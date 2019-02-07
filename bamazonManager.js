@@ -174,33 +174,143 @@ function addInventory() {
 
 
                 });
-        }
+        };
+    });
+}
 
+//this function updates the products database with a new quantity for a product
 
-        function updateProducts(newQuantity, productId, productName) {
-            console.log(`chosen item ${productId}`);
-            // update item 
-            let query = connection.query(
-                "UPDATE products SET ? WHERE ?",
-                [
-                    {
-                        stock_quantity: newQuantity
-                    },
-                    {
-                        product_id: productId
-                    }
-                ],
-                function (error) {
-                    if (error) {
-                        console.log(`error ${error}`);
+function updateProducts(newQuantity, productId, productName) {
+    console.log(`chosen item ${productId}`);
+    // update item 
+    let query = connection.query(
+        "UPDATE products SET ? WHERE ?",
+        [
+            {
+                stock_quantity: newQuantity
+            },
+            {
+                product_id: productId
+            }
+        ],
+        function (error) {
+            if (error) {
+                console.log(`error ${error}`);
+                throw err;
+            }
+            else {
+                console.log(`Quantity updated: product ${productName}   Quantity on Hand: ${newQuantity}`);
+                managerOptions();
+            }
+
+        });
+}
+//this function inserts a new product into the products database
+function newProduct() {
+    // prompt for info about the item being put up for auction
+    inquirer
+        .prompt([
+            {
+                name: "product",
+                type: "input",
+                message: "Enter Product Name:",
+                validate: function (input) {
+                    // Declare function as asynchronous, and save the done callback
+                    let done = this.async();
+                    setTimeout(function () {
+                        if (!input) {
+                            // Pass the return value in the done callback
+                            done('You need to enter a product name');
+                            return;
+                        }
+                        // Pass the return value in the done callback
+                        done(null, true);
+                    }, 1000);
+                }
+            },
+            {
+                name: "department",
+                type: "input",
+                message: "Enter Department",
+                validate: function (input) {
+                    // Declare function as asynchronous, and save the done callback
+                    let done = this.async();
+                    setTimeout(function () {
+                        if (!input) {
+                            // Pass the return value in the done callback
+                            done('You need to enter a department');
+                            return;
+                        }
+                        // Pass the return value in the done callback
+                        done(null, true);
+                    }, 1000);
+                }
+
+            },
+            {
+                name: "price",
+                type: "input",
+                message: "Enter price per unit",
+                validate: function (input) {
+                    // Declare function as asynchronous, and save the done callback
+                    let done = this.async();
+                    setTimeout(function () {
+                        //need to enter a price; price must be a number
+                        if ((!input) || (isNaN(input))) {
+                            // Pass the return value in the done callback
+                            done('Enter a valid price');
+                            return;
+                        }
+                        // Pass the return value in the done callback
+                        done(null, true);
+                    }, 1000);
+                }
+            },
+            {
+                name: "quantity",
+                type: "input",
+                message: "Enter quantity on hand",
+                validate: function (input) {
+                    // Declare function as asynchronous, and save the done callback
+                    let done = this.async();
+                    setTimeout(function () {
+                        //need to enter a quantity on hand, quantity on hand must be an integer
+                        if ((!input) || (isNaN(input)) || (!Number.isInteger(parseFloat(input)))) {
+                            // Pass the return value in the done callback
+                            done('Enter a valid quantity on hand');
+                            return;
+                        }
+                        // Pass the return value in the done callback
+                        done(null, true);
+                    }, 1000);
+                }
+            }
+
+        ])
+        .then(function (answer) {
+            // when finished prompting, insert a new item into the db with that info
+            connection.query(
+                "INSERT INTO products SET ?",
+                {
+                    product_name: answer.product,
+                    product_department: answer.department,
+                    product_price: answer.price,
+                    stock_quantity: answer.quantity
+                },
+                function (err) {
+                    if (err) {
+                        console.log(`insert error ${err}`);
                         throw err;
                     }
-                    else {
-                        console.log(`Quantity updated: product ${productName}   Quantity on Hand: ${newQuantity}`);
-                        managerOptions();
-                    }
-
-                });
-        }
-    });
+                    console.log(`Product was inserted:
+                                        Product Name: ${answer.product} 
+                                        Department: ${answer.department}
+                                        Price: ${answer.price}
+                                        Quantity on hand: ${answer.quantity}`);
+                    // re-prompt the user for if they want to do another action
+                    // re-prompt the user for if they want to bid or post
+                    managerOptions();
+                }
+            );
+        });
 }

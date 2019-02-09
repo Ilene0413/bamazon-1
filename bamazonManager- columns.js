@@ -2,8 +2,7 @@
 
 let mysql = require("mysql");
 let inquirer = require("inquirer");
-//load the NPM print table package
-const cTable = require('console.table');
+let columnify = require('columnify');
 
 // create the connection information for the sql database
 var connection = mysql.createConnection({
@@ -75,10 +74,89 @@ function viewProducts() {
             console.log(`error ${err}`);
             throw err;
         };
-                //format printing of products
-
         let productsInStore = results;
-        displayProducts(productsInStore);
+
+        //format printing of products
+        
+        let columnsD = columnify([{
+            productId: ""},
+        
+       { productName: ""} ,
+        {productPrice: "" },
+        {productQuantity: "" }
+        ]);
+        columnsD.productId = 1;
+        columnsD.productName = "table";
+        columnsD.productPrice = 2.99;
+        columnsD.Quantity = 3;
+        columnify(columnsD);
+        console.log(columnsD); 
+
+        let columnData = columnify([{
+            productId: ""
+        },
+        { productName: "" },
+        { productPrice: "" },
+        { productQuantity: "" }
+        ], {
+                showheaders: true,
+                align: 'center',
+                config: {
+                    productId: {
+                        minWidth: 5,
+                        headingTransform: function (heading) {
+                            heading = "Product ID ";
+                            return heading
+                        }
+                    },
+                    productName: {
+                        minWidth: 20,
+                        headingTransform: function (heading) {
+                            heading = "Product";
+                            return heading
+                        }
+                    },
+                    productPrice: {
+                        maxWidth: 10,
+                        headingTransform: function (heading) {
+                            heading = "Price/Unit";
+                            return heading
+                        }
+                    },
+                    productQuantity: {
+                        maxWidth: 15,
+                        headingTransform: function (heading) {
+                            heading = "Quantity on Hand ";
+                            return heading
+                        }
+                    },
+                }
+
+            });
+        //    console.log(columndata);
+        //print the headers one time
+        console.log(columnData);
+        columnData[0].showheaders = false;
+        columnData.productQuantity = 13;
+        columnData[0].productId = 2;
+        columnData[0].productName = "table";
+        columnData[0].price = 12.99;
+        console.log(`${columnData.productQuantity}`);
+        console.log(columnData);
+
+        //        console.log(`Product ID          Product          Price          QuantitY`);
+
+        for (let i = 0; i < productsInStore.length; i++) {
+         //   console.log(`before set column data ${productsInStore[i].product_id} ${productsInStore[i].product_name.trim()}         ${productsInStore[i].product_price.toFixed(2)}           ${productsInStore[i].stock_quantity}`);
+
+            columnify.productId = productsInStore[i].product_id;
+            columnify.productName = productsInStore[i].product_name.trim();
+            columnify.productPrice = productsInStore[i].product_price.toFixed(2);
+            columnify.productQuantity = productsInStore[i].stock_quantity;
+            console.log(columnData);
+       //     console.log(columnData);
+       //          console.log(`${productsInStore[i].product_id} ${productsInStore[i].product_name.trim()}         ${productsInStore[i].product_price.toFixed(2)}           ${productsInStore[i].stock_quantity}`);
+        }
         managerOptions();
     });
 
@@ -93,33 +171,19 @@ function lowInventory() {
             throw err;
         };
         let productsInStore = results;
-        displayProducts(productsInStore);
+        console.log(`Product ID          Product          Price          QuantitY`);
+
+        for (let i = 0; i < productsInStore.length; i++) {
+            console.log(`${productsInStore[i].product_id} ${productsInStore[i].product_name.trim()}         ${productsInStore[i].product_price.toFixed(2)}           ${productsInStore[i].stock_quantity}`);
+        }
         managerOptions();
     });
 
 }
-//this function console logs the products to be displayed
 
-function displayProducts(productsInStore) {
-let values = [
-    [prodId = '',
-    prodName = '',
-    prodPrice = '',
-    prodQuantity = ''
-    ],
-];
-
-for (let i = 0; i < productsInStore.length; i++) {
-    values.push([productsInStore[i].product_id,
-    productsInStore[i].product_name.trim(),
-    productsInStore[i].product_price.toFixed(2),
-    productsInStore[i].stock_quantity
-    ]);
-};
-console.table(['Product ID', 'Product Name', 'Price/Unit', 'Quantity on Hand'], values);
-}
 
 function addInventory() {
+    console.log(`in add inventory`);
     // query the database for all items 
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) {
@@ -175,10 +239,15 @@ function addInventory() {
                     let chosenProduct;
                     let newQuantity = 0;
                     for (let i = 0; i < results.length; i++) {
+                        console.log(`answer.choice ${answer.choice}`);
+                        console.log(`answer quantity ${answer.addQuantity}`);
+                        console.log(`result product name = ${results[i].product_name}`);
                         if (results[i].product_name === answer.choice) {
                             chosenItem = results[i].product_id;
                             chosenProduct = results[i].product_name;
                             newQuantity = results[i].stock_quantity + parseInt(answer.addQuantity);
+                            console.log(`new quantity ${newQuantity}`);
+                            console.log(`results ${results[i].stock_quantity}`);
                             break;
                         }
                     }

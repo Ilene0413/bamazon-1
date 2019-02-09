@@ -4,10 +4,7 @@
 let inquirer = require("inquirer");
 
 //load the NPM print table package
-// call once somewhere in the beginning of the app
 const cTable = require('console.table');
-let columnify = require('columnify')
-let WordTable = require('word-table');
 //require mysql
 
 var mysql = require("mysql");
@@ -47,33 +44,25 @@ function displayProducts(askPurchase) {
             console.log(`error ${err}`);
             throw err;
         };
-        // display all products in store (id, name and cost)
+        // display all products in store (id, name and cost) using console.table
 
-        // basic usage
         let productsInStore = results;
-        //        let columns = columnify([{
-        //            product_ID: "        ",
-        // /           product_name: "       ",
-        //            price: "",
-        //        }],
-        //            { showHeaders: true });
-                console.log(`Product ID          Product          Price`);
+
+        let values = [
+            [prodId = '',
+            prodName = '',
+            prodPrice = ''
+            ],
+        ];
 
         for (let i = 0; i < productsInStore.length; i++) {
+            values.push([productsInStore[i].product_id,
+            productsInStore[i].product_name.trim(),
+            productsInStore[i].product_price.toFixed(2),
+            ]);
+        };
+        console.table(['Product ID', 'Product Name', 'Price/Unit'], values);
 
-            //            let displayColumns = columnify([{
-            //                product_ID: productsInStore[i].product_id,
-            //                product_name: productsInStore[i].product_name.trim(),
-            // /               price: productsInStore[i].product_price
-            //            }],
-            //                { showHeaders: false },
-            //                { config: { value: { align: 'right' } } });
-            //           console.log(`${productsInStore[i].product_id}          ${productsInStore[i].product_name}          ${productsInStore[i].product_price}`);
-            //     console.log(displayColumns);
-       
-
-          console.log(`${productsInStore[i].product_id} ${productsInStore[i].product_name.trim()} ${productsInStore[i].product_price}`);
-    };
         //ask customer if they want to purchase a product
         console.log(`\n`);
 

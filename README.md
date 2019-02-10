@@ -17,32 +17,33 @@ If the user answers **NO (N)**, the app ends.
 ![answer no](https://github.com/Ilene0413/bamazon-1/blob/master/images/answer-no.png)
 
 If the user answers **YES (Y)**, the user will then enter the
-product ID number.  The user must enter a valid id number (can only be a number).
+product ID number.  The user must enter a valid product id number (can only be a number).
 ![answer yes](https://github.com/Ilene0413/bamazon-1/blob/master/images/answer-yes.png)
 
 If the user enters a space, they will be asked to enter a valid product number
 ![enter space](https://github.com/Ilene0413/bamazon-1/blob/master/images/entered-space.png)
 
-![space response](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-letter-space-response.png)
+![space response](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-letter-response.png)
 
 If the user enters a letter, they will be asked to enter a valid product number
 ![enter letter](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-letter.png)
 
-
 ![enter letter response](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-letter-response.png)
 
-The user is then asked how many of the items they would like to purchase.  The user must enter a number.The number the user enters is then checked against the **products** database to make sure there is enough on hand for the user to purchase.  
+The user enters a vaild product ID. The user is then asked how many of the items they would like to purchase.  The user must enter a number.The number the user enters is then checked against the **products** database to make sure there is enough on hand for the user to purchase.  
+
+![enter product & quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-id-quantity.png)
+
+If there is not enough on hand, the APP returns a message indicating that the user cannot purchase as there is insufficient quantity.
+![first screen](https://github.com/Ilene0413/bamazon-1/blob/master/images/insufficient-quantity.png)
+
+
+If the user enters an invalid quantity amount (this must be a  number), they receive a message.
 
 ![enter invalid quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-invalid-quantity.png)
 
 ![invalid quantity response](https://github.com/Ilene0413/bamazon-1/blob/master/images/invalid-quantity-response.png)
 
-If there is not enough on hand, the APP returns a message indicating that the user cannot purchase as there is insufficient quantity.
-![first screen](https://github.com/Ilene0413/bamazon-1/blob/master/images/insufficient-quantity.png)
-
-If there is enough on hand, the quantity in the **products** database is decreased by the amount the user has purchased, and the database is updated. The user is given a message that they purchased the product with the unit cost and the total amount of the purchase.
-The user is then asked if they would like to order another product.
-![enter product](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-id-quantity.png)
 
 **Manager** 
 In the Manager App, a manager is given a choice of 4 options: 

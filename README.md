@@ -85,8 +85,8 @@ Tha manager will get a message back indicating that the product has been added.
 The price and quantity must be a number or the manager will get an error message
 ![invalid price product](https://github.com/Ilene0413/bamazon-1/blob/master/images/mgr-invalid-price.png)
 ![invalid price response](https://github.com/Ilene0413/bamazon-1/blob/master/images/mgr-invalid-price-response.png)
-![invalid quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/mgr-invalid-quantity.png)
-![invalid quantity response](https://github.com/Ilene0413/bamazon-1/blob/master/images/mgr-invalid-quantity-response.png)
+![invalid quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/mgr-invalid-qty.png)
+![invalid quantity response](https://github.com/Ilene0413/bamazon-1/blob/master/images/mgr-invalid-qty-response.png)
 
 To exit the app, the manager will move the cursor to **Exit** and hit enter
 ![exit](https://github.com/Ilene0413/bamazon-1/blob/master/images/exit.png)

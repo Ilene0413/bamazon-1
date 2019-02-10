@@ -84,9 +84,11 @@ function viewProducts() {
 
 
 }
-function lowInventory() {
+//this function is to view all products with low inventory
 
+function lowInventory() {
     //query products database to list all products with low inventory (less than 5)
+
     connection.query("SELECT * FROM products WHERE stock_quantity < 5", function (err, results) {
         if (err) {
             console.log(`error ${err}`);
@@ -118,7 +120,7 @@ for (let i = 0; i < productsInStore.length; i++) {
 };
 console.table(['Product ID', 'Product Name', 'Price/Unit', 'Quantity on Hand'], values);
 }
-
+//this function is update the quantity on hand of an existing item
 function addInventory() {
     // query the database for all items 
     connection.query("SELECT * FROM products", function (err, results) {

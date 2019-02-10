@@ -229,7 +229,7 @@ function newProduct() {
                     // Declare function as asynchronous, and save the done callback
                     let done = this.async();
                     setTimeout(function () {
-                        if (!input) {
+                        if (!input || input.trim() ==="") {
                             // Pass the return value in the done callback
                             done('You need to enter a product name');
                             return;
@@ -247,7 +247,7 @@ function newProduct() {
                     // Declare function as asynchronous, and save the done callback
                     let done = this.async();
                     setTimeout(function () {
-                        if (!input) {
+                        if (!input || input.trim() ==="") {
                             // Pass the return value in the done callback
                             done('You need to enter a department');
                             return;

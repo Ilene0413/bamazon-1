@@ -1,10 +1,10 @@
 # bamazon
 create an amazon like store 
 
-A video of how the amazon store works can be found at https://drive.google.com/file/d/12hSqAh9EqDkx85wrBV-L5eWh8mpBf7oC/view
+A video of how the amazon store works can be found at https://drive.google.com/file/d/1m6bkErn_zoOYrRsGBlIcfgXMTnqqBYeo/view. 
 
 http://github.com - automatic!
-[GitHub](https://drive.google.com/file/d/1Qz86ebv89AKnK8ollmId2pLXgLguR4P7/view)
+[GitHub](https://drive.google.com/file/d/1m6bkErn_zoOYrRsGBlIcfgXMTnqqBYeo/view)
 
 **Amazon Store** The app has 2 options, Bamazon customer or Bamazon manager.  
 

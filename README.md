@@ -23,8 +23,6 @@ product ID number.  The user must enter a valid product id number (can only be a
 If the user enters a space, they will be asked to enter a valid product number
 ![enter space](https://github.com/Ilene0413/bamazon-1/blob/master/images/entered-space.png)
 
-![space response](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-letter-response.png)
-
 If the user enters a letter, they will be asked to enter a valid product number
 ![enter letter](https://github.com/Ilene0413/bamazon-1/blob/master/images/enter-letter.png)
 
@@ -74,7 +72,7 @@ The manager then must enter a number representing the quantity they want added. 
 ![invalid quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/invalid-mgr-qty-response.png)
 
 The manager enters a quantity to be added to the quantity on hand for the specific product.
-![updated quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/invalid-mgr-qty-response.png)
+![updated quantity](https://github.com/Ilene0413/bamazon-1/blob/master/images/updated-quantity.png)
 
 To **Add New Product**, the manager will move the cursor to **Add New Product** and hit enter
 ![select add new product](https://github.com/Ilene0413/bamazon-1/blob/master/images/select-new-inv.png)
@@ -92,9 +90,6 @@ The price and quantity must be a number or the manager will get an error message
 
 To exit the app, the manager will move the cursor to **Exit** and hit enter
 ![exit](https://github.com/Ilene0413/bamazon-1/blob/master/images/exit.png)
-
-
-
 
 
 

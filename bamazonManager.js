@@ -193,7 +193,6 @@ function addInventory() {
 //this function updates the products database with a new quantity for a product
 
 function updateProducts(newQuantity, productId, productName) {
-    console.log(`chosen item ${productId}`);
     // update item 
     let query = connection.query(
         "UPDATE products SET ? WHERE ?",
